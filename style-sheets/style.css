@@ -36,6 +36,7 @@ span {
     font-size: 2em;
     border-radius: 0.3em;
     background-color: silver;
+    width: 20%;
 }
 
 button {
@@ -46,4 +47,10 @@ button {
 
 button:hover {
     background-color: silver;
+}
+
+#list {
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
 }

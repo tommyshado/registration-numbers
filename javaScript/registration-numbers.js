@@ -2,7 +2,11 @@ const RegistrationApp = (regNumber) => {
     // global variable
 
     let registrationNumber = '';
-    let errorMessage = '';
+
+    // error messages
+
+    let inputErrorMessage = '';
+    let showErrorMessage = '';
 
     // objects variables
 
@@ -25,9 +29,9 @@ const RegistrationApp = (regNumber) => {
             if (regexPattern.test(registration)) {
                 registrationNumber = registration;
             } else if (registration !== '') {
-                errorMessage = 'Please enter a valid registration number. e.g CA 435-546, CL 657, CJ 75755';
+                inputErrorMessage = 'Please enter a valid registration number. e.g CA 435-546, CL 657, CJ 75755';
             } else {
-                errorMessage = 'Please enter a registration number.';
+                inputErrorMessage = 'Please enter a registration number.';
             }
         }
 
@@ -61,23 +65,33 @@ const RegistrationApp = (regNumber) => {
             notDuplicateRegistration[registrationNumber] = 1;
             return registrationNumber;
         } else {
-            errorMessage = `${registrationNumber} registration number already entered.`;
+            inputErrorMessage = `${registrationNumber} registration number already entered.`;
             return '';
         }
     }
 
-    const filter = dropdownValue => {
-        if (dropdownValue !== undefined) {
-            if (townsRegistrationObject[dropdownValue] !== []) {
-                // returning the array of the registration numbers in the object
-                return townsRegistrationObject[dropdownValue];
-            } else {
-                errorMessage = 'There are no registration numbers for the selected town.';
-            }
+    const filter = (dropdownValue) => {
 
-        } else {
-            errorMessage = 'Please select a button first.';
+        // I discovered that when I compared the townsRegistrationObject[dropdownValue] === [], 
+        // when the townsRegistrationObject[dropdownValue] value is equal to [] it returns false when I use alert() function
+
+        // so instead I used townsRegistrationObject[dropdownValue].length === 0, and it returned true
+
+        if (townsRegistrationObject[dropdownValue].length === 0) {
+            showErrorMessage = 'There are no registration numbers for the selected town.';
         }
+
+        if (dropdownValue === null) {
+            showErrorMessage = 'Please select a button first.';
+        }
+
+        // I also discovered that an if statement with that returns results has to be the last condition 
+
+        if (townsRegistrationObject[dropdownValue] !== []) {
+            // returning the array of the registration numbers in the object
+            return townsRegistrationObject[dropdownValue];
+        }
+
     }
 
     const getTownRegistration = () => {
@@ -86,7 +100,10 @@ const RegistrationApp = (regNumber) => {
     }
 
     const getMessage = () => {
-        return errorMessage;
+        return {
+            'errorMessageForAddBtn' : inputErrorMessage,
+            'errorMessageForShowBtn' : showErrorMessage,
+        }
     }
 
     // returning the functions as an object

@@ -58,6 +58,7 @@ const addElement = (registration) => {
 // events
 
 add.addEventListener("click", () => {
+
     // validating the registration number from the client
     app.setRegistrationNumber(input.value).validRegistrationNumber();
 
@@ -73,7 +74,7 @@ add.addEventListener("click", () => {
     // set the input area to an empty string
     input.value = "";
 
-    message.innerHTML = app.getMessage();
+    message.innerHTML = app.getMessage().errorMessageForAddBtn;
     message.classList.add("danger");
     message.classList.add("box-model");
 
@@ -87,9 +88,11 @@ add.addEventListener("click", () => {
         "regNumbersData",
         JSON.stringify(app.getTownRegistration())
     );
+
 });
 
 show.addEventListener("click", () => {
+
     const places = document.querySelector('input[name="registrations"]:checked');
 
     if (places) {
@@ -99,8 +102,14 @@ show.addEventListener("click", () => {
 
         // iterate over the length of the list
         for (let i = 0; i < townsArray.length; i++) {
+
             // create a list element for every reg number and log it
             addElement(townsArray[i]);
         }
     }
+    
+    message.innerHTML = app.getMessage().errorMessageForShowBtn;
+    message.classList.add('danger');
+    message.classList.add('box-model');
+    
 });

@@ -111,5 +111,10 @@ show.addEventListener("click", () => {
     message.innerHTML = app.getMessage().errorMessageForShowBtn;
     message.classList.add('danger');
     message.classList.add('box-model');
+
+    if (message.innerHTML === "") {
+        message.classList.remove("danger");
+        message.classList.remove("box-model");
+    }
     
 });

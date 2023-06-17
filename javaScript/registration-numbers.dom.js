@@ -63,13 +63,12 @@ add.addEventListener("click", () => {
     app.setRegistrationNumber(input.value).validRegistrationNumber();
 
     // create an element for the current registration number
-    addElement(app.getRegistrationNumber());
-
+    
+    addElement(app.addRegistrationForTown());
+    
     if (lst.innerHTML === "") {
         lst.remove("registrationPlate");
     }
-
-    app.addRegistrationTownsObject();
 
     // set the input area to an empty string
     input.value = "";

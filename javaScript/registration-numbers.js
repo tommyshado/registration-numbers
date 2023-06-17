@@ -10,7 +10,6 @@ const RegistrationApp = (regNumber) => {
 
     // objects variables
 
-    const notDuplicateRegistration = {};
     const townsRegistrationObject = regNumber || {
         'CA': [],
         'CL': [],
@@ -40,7 +39,7 @@ const RegistrationApp = (regNumber) => {
         }
     }
 
-    const addRegistrationTownsObject = () => {
+    const addRegistrationForTown = () => {
         // grab the towns registration in the townsRegistrationObject
         const registrationsArray = Object.keys(townsRegistrationObject);
 
@@ -53,22 +52,17 @@ const RegistrationApp = (regNumber) => {
 
             if (!townsArray.includes(registrationNumber)) {
                 townsArray.push(registrationNumber);
+                return registrationNumber;
+            } else {
+                inputErrorMessage = `${registrationNumber} registration number already entered.`;
+                return '';
             }
         }
+        return '';
     }
 
 
     // get functions
-
-    const getRegistrationNumber = () => {
-        if (notDuplicateRegistration[registrationNumber] === undefined) {
-            notDuplicateRegistration[registrationNumber] = 1;
-            return registrationNumber;
-        } else {
-            inputErrorMessage = `${registrationNumber} registration number already entered.`;
-            return '';
-        }
-    }
 
     const filter = (dropdownValue) => {
 
@@ -87,11 +81,12 @@ const RegistrationApp = (regNumber) => {
 
         // I also discovered that an if statement with that returns results has to be the last condition 
 
-        if (townsRegistrationObject[dropdownValue] !== []) {
+        if (townsRegistrationObject[dropdownValue].length > 0) {
             // returning the array of the registration numbers in the object
             return townsRegistrationObject[dropdownValue];
         }
 
+        return '';
     }
 
     const getTownRegistration = () => {
@@ -110,8 +105,7 @@ const RegistrationApp = (regNumber) => {
 
     return {
         setRegistrationNumber,
-        getRegistrationNumber,
-        addRegistrationTownsObject,
+        addRegistrationForTown,
         filter,
         getTownRegistration,
         getMessage,

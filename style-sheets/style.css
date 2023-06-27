@@ -1,3 +1,7 @@
+body {
+    background-color: #6c757d;
+}
+
 .sections {
     font-size: 1.5em;
 }
@@ -11,7 +15,7 @@
 
 .danger {
     color: red;
-    background-color: silver;
+    background-color: #f8f9fa;
     border: 1.5px solid black;
     border-radius: 0.3em;
     font-size: 1.5em;
@@ -35,19 +39,19 @@ span {
     border: 1.5px solid black;
     font-size: 2em;
     border-radius: 0.3em;
-    background-color: silver;
+    background-color: #f8f9fa;
     width: 20%;
     margin: 0.7em;
 }
 
 button {
-    background-color: white;
+    background-color: #f8f9fa;
     border-radius: 0.3em;
     font-size: 1em;
 }
 
 button:hover {
-    background-color: silver;
+    background-color: #6c757d;
 }
 
 #list {

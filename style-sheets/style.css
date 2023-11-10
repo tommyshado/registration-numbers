@@ -1,9 +1,19 @@
 body {
-    background-color: #6c757d;
+    background-color: #17C3B2;
 }
 
 .sections {
-    font-size: 1.5em;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 1em;
+}
+
+.section-without-handlebars {
+    flex: 1;
+}
+
+.handlebars-section {
+    flex: 1;
 }
 
 .box-model {
@@ -39,19 +49,20 @@ span {
     border: 1.5px solid black;
     font-size: 2em;
     border-radius: 0.3em;
-    background-color: #f8f9fa;
+    background-color: #CCD5FF;
     width: 20%;
     margin: 0.7em;
 }
 
 button {
-    background-color: #f8f9fa;
+    background-color: #ffffff;
     border-radius: 0.3em;
     font-size: 1em;
 }
 
 button:hover {
-    background-color: #6c757d;
+    background-color: #227C9D;
+    color: #ffffff;
 }
 
 #list {
@@ -65,5 +76,9 @@ button:hover {
     #list {
         /* flex-direction: column; */
         align-items: center;
+    }
+
+    .sections {
+        flex-direction: column;
     }
 }

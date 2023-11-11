@@ -79,6 +79,13 @@ button:hover {
     justify-content: space-evenly;
 }
 
+#list__ {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-content: space-evenly;
+}
+
 @media (max-width:859px) {
     #list {
         /* flex-direction: column; */

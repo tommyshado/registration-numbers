@@ -40,51 +40,23 @@ if (localStorage["dataTemplate"]) {
             const element__ = document.createElement('li');
             // set the text of the empty element to the current registration number
             element__.innerHTML = currentRegNumber__;
-            element__.classList.add('regNumber');
+            element__.classList.add('registrationPlate');
 
             lst__.append(element__);
         }
     }
-}
+};
 
-// templating data
-
-const templateSource = document.querySelector(".template").innerHTML;
-
-let lstData = document.querySelector(".lstData");
-
-const regTemplate = Handlebars.compile(templateSource);
-
+// App instance
 const App = RegistrationApp(regNumber__);
 
 let regNumbers = App.getRegNums();
+let regNumbersClone = [];
 
-let regNumbersClone = []; // later replace with filtered data
-
-for (const currentRegNum in regNumbers) {
-    const regNumArray = regNumbers[currentRegNum];
-
-    for (const regNum in regNumArray) {
-        regNumbersClone.push(regNumArray[regNum]);
-    };
-};
-
-let regNumbersHtml = regTemplate({ regNums: regNumbersClone});
-
-lstData.innerHTML = regNumbersHtml;
-
-const createElement = (registration) => {
-    if (registration !== "") {
-        const element = document.createElement("li");
-        const node = document.createTextNode(registration);
-
-        element.append(node);
-
-        element.classList.add("regNumber");
-
-        lst__.insertBefore(element, lst__.children[0]);
-    }
-};
+// templating data
+const templateSource = document.querySelector(".template").innerHTML;
+let lstData = document.querySelector(".lstData");
+const regTemplate = Handlebars.compile(templateSource);
 
 // Events
 
@@ -105,8 +77,23 @@ add__.addEventListener("click", () => {
 
     const setReg = App.setRegNum(input__.value);
     if (setReg) {
-        // Create an element
-        createElement(input__.value);
+
+        for (const currentRegNum in regNumbers) {
+            const regNumArray = regNumbers[currentRegNum];
+
+            for (const regNum in regNumArray) {
+                regNumbersClone.push(regNumArray[regNum]);
+            };
+        };
+
+        let regNumbersHtml = regTemplate({ regNums: regNumbersClone});
+        lstData.innerHTML = regNumbersHtml;
+
+        const lstOfRegNums = lstData.getElementsByTagName("li");
+        
+        for (let i = 0; i < lstOfRegNums.length; i++) {
+            lstOfRegNums[i].classList.add("registrationPlate");
+        };
 
         message__.innerHTML = "Added successfully."
         message__.classList.add("success");
@@ -131,7 +118,7 @@ add__.addEventListener("click", () => {
         }, 3000);
 
         if (lst__.innerHTML === "") {
-            lst__.remove("regNumber");
+            lst__.remove("registrationPlate");
         };
 
     } else {
@@ -147,7 +134,7 @@ add__.addEventListener("click", () => {
         }, 3000);
 
         if (lst__.innerHTML === "") {
-            lst__.remove("regNumber");
+            lst__.remove("registrationPlate");
         };
     };
 
@@ -171,22 +158,31 @@ show__.addEventListener("click", () => {
         const townsArray__ = App.filter(towns.value);
 
         if (townsArray__.length === 0) {
-            message.innerHTML = `No registration number for ${towns.value}.`
-            message.classList.add("danger");
-            message.classList.add("box-model");
+            message__.innerHTML = `No registration number for ${towns.value}.`
+            message__.classList.add("danger");
+            message__.classList.add("box-model");
         
             setTimeout(() => {
-                message.innerHTML = "";
-                message.classList.remove("danger");
-                message.classList.remove("box-model");
+                message__.innerHTML = "";
+                message__.classList.remove("danger");
+                message__.classList.remove("box-model");
             }, 3000);
         };
 
+        regNumbersClone = [];
         // iterate over the length of the list
         for (let i = 0; i < townsArray__.length; i++) {
-
             // create a list element for every reg number and log it
-            addElement(townsArray__[i]);
+            regNumbersClone.push(townsArray__[i]);
+
+            let regNumbersHtml__ = regTemplate({ regNums: regNumbersClone});
+            lstData.innerHTML = regNumbersHtml__;
+        };
+
+        const lstOfRegNums__ = lstData.getElementsByTagName("li");
+        
+        for (let i = 0; i < lstOfRegNums__.length; i++) {
+            lstOfRegNums__[i].classList.add("registrationPlate");
         };
     };
 
@@ -202,8 +198,8 @@ show__.addEventListener("click", () => {
 
 resetLst__.addEventListener("click", () => {
     localStorage.setItem(
-        "regNumbersData",
-        JSON.stringify(Apppp.clear())
+        "dataTemplate",
+        JSON.stringify(App.clear())
     );
     location.reload();
 });

@@ -3,7 +3,11 @@
 // Input elements
 const input = document.querySelector("#reg");
 
+// Buttons
 const show = document.querySelector("#show");
+const resetLst = document.querySelector("#clearLst");
+
+// Lst
 const lst = document.querySelector("#list");
 
 // Add buttons elements
@@ -158,4 +162,13 @@ show.addEventListener("click", () => {
         message.classList.remove("box-model");
     };
     
+});
+
+resetLst.addEventListener("click", () => {
+    localStorage.setItem(
+        "regNumbersData",
+        JSON.stringify({ "CA": [], "CJ": [], "CL": [] })
+    );
+    app.clear();
+    location.reload();
 });

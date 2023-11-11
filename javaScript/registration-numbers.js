@@ -6,7 +6,7 @@ const RegistrationApp = (regNumber) => {
         return regexPattern.test(upperCaseRegNum);
     };
 
-    const regNums = regNumber || { "CA": [], "CJ": [], "CL": [] };
+    let regNums = regNumber || { "CA": [], "CJ": [], "CL": [] };
 
     const setRegNum = (regNum) => {
         if (setRegNumHelper(regNum)) {
@@ -26,6 +26,10 @@ const RegistrationApp = (regNumber) => {
         return regNums[reg];
     };
 
+    const clear = () => {
+        regNums = { "CA": [], "CJ": [], "CL": [] };
+    };
+
     const getRegNums = () => {
         return regNums;
     };
@@ -33,6 +37,7 @@ const RegistrationApp = (regNumber) => {
     return {
         setRegNum,
         filter,
+        clear,
         getRegNums
     };
 };

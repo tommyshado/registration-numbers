@@ -167,8 +167,7 @@ show.addEventListener("click", () => {
 resetLst.addEventListener("click", () => {
     localStorage.setItem(
         "regNumbersData",
-        JSON.stringify({ "CA": [], "CJ": [], "CL": [] })
+        JSON.stringify(app.clear())
     );
-    app.clear();
     location.reload();
 });

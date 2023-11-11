@@ -28,6 +28,7 @@ const RegistrationApp = (regNumber) => {
 
     const clear = () => {
         regNums = { "CA": [], "CJ": [], "CL": [] };
+        return regNums;
     };
 
     const getRegNums = () => {

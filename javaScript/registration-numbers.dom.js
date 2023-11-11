@@ -97,9 +97,25 @@ add.addEventListener("click", () => {
             message.classList.remove("box-model");
         }, 3000);
 
-    } else {
-    
+    } else if (setRegNumber === false) {
+
         message.innerHTML = "Registration number already added."
+        message.classList.add("danger");
+        message.classList.add("box-model");
+    
+        setTimeout(() => {
+            message.innerHTML = "";
+            message.classList.remove("danger");
+            message.classList.remove("box-model");
+        }, 3000);
+
+        if (lst.innerHTML === "") {
+            lst.remove("registrationPlate");
+        };
+
+    } else {
+
+        message.innerHTML = "Registration number is invalid. eg. CA 6637, cj 774-444, Cl 625";
         message.classList.add("danger");
         message.classList.add("box-model");
     

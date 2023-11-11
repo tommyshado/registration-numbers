@@ -19,6 +19,10 @@ const RegistrationApp = (regNumber) => {
             };
             // Case where registration number is a duplicate
             return false;
+        
+        // Case where registration number is invalid
+        } else {
+            return null;
         };
     };
 

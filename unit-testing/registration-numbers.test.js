@@ -32,4 +32,22 @@ describe('The RegistrationApp factory function unit testing', () => {
         
         assert.equal("Registration number already added.", duplicateRegNum);
     });
+
+    it("should be able to filter for town", () => {
+        app.setRegNum("cj 534");
+        app.setRegNum("ca 231");
+        app.setRegNum("cj 773-647");
+        app.setRegNum("cl 534");
+
+        assert.deepEqual(["ca 231"], app.filter("CA"));
+    });
+
+    it("should not be able to filter for an unknown town", () => {
+        app.setRegNum("cj 534");
+        app.setRegNum("ca 231");
+        app.setRegNum("cj 773-647");
+        app.setRegNum("cl 534");
+
+        assert.deepEqual(undefined, app.filter("CK"));
+    });
 });

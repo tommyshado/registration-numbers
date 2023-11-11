@@ -12,9 +12,9 @@
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
     <script type="text/x-template" class="template" defer>
-        {{#each this}}
+        {{#each regNums}}
           <ul>
-            <li>{{registrationNumbers}}</li>
+            <li>{{this}}</li>
           </ul>
         {{/each}}
     </script>
@@ -69,7 +69,7 @@
         <div class="handlebars-section box-model">
             <h1><img src="../assets/license-plate.png" alt="" width="60"> Registration Numbers Using handlebars Templates</h1>
     
-            <div class="errorMsg__"></div>
+            <div class="msg"></div>
     
             <!-- section for the registration numbers -->
             <div class="section box-model">
@@ -85,25 +85,25 @@
             <!-- section for the radio buttons -->
             <div class="section box-model">
     
-                <input type="radio" name="registrations" value="CA" class="places">
+                <input type="radio" name="towns" value="CA" class="town">
                 <span>CAPE TOWN</span>
     
-                <input type="radio" name="registrations" value="CL" class="places">
+                <input type="radio" name="towns" value="CL" class="town">
                 <span>STELLENBOSCH</span>
     
-                <input type="radio" name="registrations" value="CJ" class="places">
+                <input type="radio" name="towns" value="CJ" class="town">
                 <span>PAARL</span><br>
     
                  <!-- buttons -->
                  <div class="buttons">
-                    <button id="clearLst">Reset</button>
-                    <button id="show">SHOW</button>
+                    <button id="clearTowns">Reset</button>
+                    <button id="showTown">SHOW</button>
                 </div>
     
             </div>
     
             <!-- element to show registration number -->
-            <ul id="list"></ul>
+            <ul id="list__" class="lstData"></ul>
     
         </div>
 

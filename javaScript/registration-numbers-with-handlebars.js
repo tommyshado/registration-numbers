@@ -77,6 +77,8 @@ add__.addEventListener("click", () => {
 
     const setReg = App.setRegNum(input__.value);
     if (setReg) {
+        // Set the regNumbersclone to an empty array
+        regNumbersClone = [];
 
         for (const currentRegNum in regNumbers) {
             const regNumArray = regNumbers[currentRegNum];
@@ -197,9 +199,11 @@ show__.addEventListener("click", () => {
 });
 
 resetLst__.addEventListener("click", () => {
-    localStorage.setItem(
-        "dataTemplate",
-        JSON.stringify(App.clear())
-    );
-    location.reload();
+    if (confirm("Press Ok to clear registration number or Cancel to abort.")) {
+        localStorage.setItem(
+            "dataTemplate",
+            JSON.stringify(App.clear())
+        );
+        location.reload();
+    };
 });

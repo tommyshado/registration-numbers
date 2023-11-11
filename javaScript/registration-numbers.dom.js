@@ -181,9 +181,11 @@ show.addEventListener("click", () => {
 });
 
 resetLst.addEventListener("click", () => {
-    localStorage.setItem(
-        "regNumbersData",
-        JSON.stringify(app.clear())
-    );
-    location.reload();
+    if (confirm("Press Ok to clear registration number or Cancel to abort.")) {
+        localStorage.setItem(
+            "regNumbersData",
+            JSON.stringify(app.clear())
+        );
+        location.reload();
+    };
 });

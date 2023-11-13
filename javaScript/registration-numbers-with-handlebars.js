@@ -174,12 +174,12 @@ show__.addEventListener("click", () => {
         regNumbersClone = [];
         // iterate over the length of the list
         for (let i = 0; i < townsArray__.length; i++) {
-            // create a list element for every reg number and log it
+            // append element at [i] on the regNumbersClone array
             regNumbersClone.push(townsArray__[i]);
-
-            let regNumbersHtml__ = regTemplate({ regNums: regNumbersClone});
-            lstData.innerHTML = regNumbersHtml__;
         };
+        
+        let regNumbersHtml__ = regTemplate({ regNums: regNumbersClone});
+        lstData.innerHTML = regNumbersHtml__;
 
         const lstOfRegNums__ = lstData.getElementsByTagName("li");
         

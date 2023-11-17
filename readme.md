@@ -4,4 +4,5 @@ Registration numbers application is an app that prompts the user to enter a regi
 
 You can find the application here: https://tommyshado.github.io/registration-numbers/public/index.html
 
-You can also find the unit testing here: https://tommyshado.github.io/registration-numbers/unit-testing/index.test.html
+## Badge
+[![Deploy static content to Pages](https://github.com/tommyshado/registration-numbers/actions/workflows/static.yml/badge.svg)](https://github.com/tommyshado/registration-numbers/actions/workflows/static.yml)
